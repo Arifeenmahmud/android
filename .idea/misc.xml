@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BuildAttributionWarningsFilter">
+    <option name="noGCSettingWarning" value="true" />
+  </component>
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Arifeen Mahmud/Documents/oneThing/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Arifeen Mahmud/Documents/oneThing/app/src/main/res/layout/activity_main.xml" value="0.2" />
       </map>
     </option>
   </component>
