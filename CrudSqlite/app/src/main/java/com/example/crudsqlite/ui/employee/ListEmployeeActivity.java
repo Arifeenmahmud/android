@@ -12,6 +12,7 @@ import com.example.crudsqlite.MainActivity;
 import com.example.crudsqlite.R;
 import com.example.crudsqlite.adapter.EmployeeAdapter;
 import com.example.crudsqlite.dao.EmployeeDao;
+import com.example.crudsqlite.db.DbHandler;
 import com.example.crudsqlite.model.Employee;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ListEmployeeActivity extends AppCompatActivity {
         List<Employee> employees = EmployeeDao.getEmployees();
         listView = findViewById(R.id.emp_list_view);
 
-        EmployeeAdapter adapter = new EmployeeAdapter(this, employees);
+        EmployeeAdapter adapter = new EmployeeAdapter(this, employees, new DbHandler(this));
         listView.setAdapter(adapter);
 
     }

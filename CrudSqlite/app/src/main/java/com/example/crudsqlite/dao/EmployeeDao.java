@@ -31,6 +31,16 @@ public class EmployeeDao {
         return result > 0;
     }
 
+    public static boolean updateEmployee(Employee employee) {
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("NAME", employee.getName());
+        values.put("EMAIL", employee.getEmail());
+        long result = db.update("EMPLOYEE", values, "id = ?" , new String[]{employee.getId() + ""});
+        db.close();
+        return result > 0;
+    }
+
 
     public static List<Employee> getEmployees() {
         String query = "SELECT * FROM EMPLOYEE";
@@ -45,6 +55,15 @@ public class EmployeeDao {
                 employees.add(employee);
             } while (cursor.moveToNext());
         }
+        db.close();
         return employees;
+    }
+
+
+    public static boolean deleteEmployee(int id) {
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
+        int rowCount = db.delete("EMPLOYEE", "id = ?", new String[]{id + ""});
+        db.close();
+        return rowCount > 0;
     }
 }
