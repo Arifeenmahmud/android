@@ -1,12 +1,15 @@
 package com.example.crudsqlite.dao;
 
+import static com.example.crudsqlite.db.DbConstants.*;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.crudsqlite.db.DbConstants;
 import com.example.crudsqlite.db.DbHandler;
-import com.example.crudsqlite.model.Employee;
+import com.example.crudsqlite.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,36 +24,45 @@ public class EmployeeDao {
         }
     }
 
-    public static boolean addEmployee(Employee employee) {
+    public static boolean addEmployee(Product employee) {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("NAME", employee.getName());
-        values.put("EMAIL", employee.getEmail());
-        long result = db.insert("EMPLOYEE", null, values);
+        values.put(COL_NAME, employee.getName());
+        values.put(COL_EMAIL, employee.getEmail());
+        values.put(COL_PRICE, employee.getPrice());
+        values.put(COL_QUANTITY, employee.getQuantity());
+        long result = db.insert(TBL_NAME, null, values);
         db.close();
         return result > 0;
     }
 
-    public static boolean updateEmployee(Employee employee) {
+    public static boolean updateEmployee(Product employee) {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("NAME", employee.getName());
-        values.put("EMAIL", employee.getEmail());
-        long result = db.update("EMPLOYEE", values, "id = ?" , new String[]{employee.getId() + ""});
+        values.put(COL_NAME, employee.getName());
+        values.put(COL_EMAIL, employee.getEmail());
+        values.put(COL_PRICE, employee.getPrice());
+        values.put(COL_QUANTITY, employee.getQuantity());
+        long result = db.update(TBL_NAME, values, "id = ?" , new String[]{employee.getId() + ""});
         db.close();
         return result > 0;
     }
 
 
-    public static List<Employee> getEmployees() {
-        String query = "SELECT * FROM EMPLOYEE";
+    public static List<Product> getEmployees() {
+        String query = "SELECT * FROM " + TBL_NAME;
         SQLiteDatabase db = dbHandler.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
-        List<Employee> employees = new ArrayList<>(cursor.getCount());
+        List<Product> employees = new ArrayList<>(cursor.getCount());
         if (cursor.moveToFirst()) {
             do {
-                Employee employee = new Employee(cursor.getString(1), cursor.getString(2));
+                String name = cursor.getString(1);
+                String email = cursor.getString(2);
+                String price = cursor.getString(3);
+                String quantity = cursor.getString(4);
+
+                Product employee = new Product(name, email, price, quantity);
                 employee.setId(cursor.getInt(0));
                 employees.add(employee);
             } while (cursor.moveToNext());
@@ -62,7 +74,7 @@ public class EmployeeDao {
 
     public static boolean deleteEmployee(int id) {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
-        int rowCount = db.delete("EMPLOYEE", "id = ?", new String[]{id + ""});
+        int rowCount = db.delete(TBL_NAME, "id = ?", new String[]{id + ""});
         db.close();
         return rowCount > 0;
     }

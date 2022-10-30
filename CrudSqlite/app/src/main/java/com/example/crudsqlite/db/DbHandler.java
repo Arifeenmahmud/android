@@ -18,7 +18,8 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = "CREATE TABLE EMPLOYEE (ID INTEGER PRIMARY KEY, NAME TEXT, EMAIL TEXT)";
+        String query = "CREATE TABLE " + TBL_NAME + " (ID INTEGER PRIMARY KEY, " + COL_NAME + " TEXT, " +
+                COL_EMAIL + " TEXT, " + COL_PRICE + " TEXT, " + COL_QUANTITY + " TEXT)";
         sqLiteDatabase.execSQL(query);
 
     }

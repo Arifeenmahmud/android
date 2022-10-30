@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.crudsqlite.R;
 import com.example.crudsqlite.dao.EmployeeDao;
 import com.example.crudsqlite.db.DbHandler;
-import com.example.crudsqlite.model.Employee;
+import com.example.crudsqlite.model.Product;
 import com.example.crudsqlite.ui.employee.AddEmployeeActivity;
 
 import java.util.List;
@@ -22,14 +22,14 @@ import java.util.List;
 public class EmployeeAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Employee> employees;
+    private List<Product> employees;
 
     private LayoutInflater inflater;
     private DbHandler db;
 
 
 
-    public EmployeeAdapter(Context context, List<Employee> employeeList, DbHandler db) {
+    public EmployeeAdapter(Context context, List<Product> employeeList, DbHandler db) {
         this.context = context;
         employees = employeeList;
         this.db = db;
@@ -62,13 +62,17 @@ public class EmployeeAdapter extends BaseAdapter {
 
         TextView nameText = view.findViewById(R.id.emp_list_name);
         TextView emailText = view.findViewById(R.id.emp_list_email);
+        TextView priceText = view.findViewById(R.id.emp_list_price);
+        TextView quantityText = view.findViewById(R.id.emp_list_quantity);
         ImageView editBtn = view.findViewById(R.id.emp_edit_btn);
         ImageView delBtn = view.findViewById(R.id.emp_del_btn);
 
 
-        Employee employee = employees.get(i);
+        Product employee = employees.get(i);
         nameText.setText(employee.getName());
         emailText.setText(employee.getEmail());
+        priceText.setText(employee.getPrice());
+        quantityText.setText(employee.getQuantity());
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +81,8 @@ public class EmployeeAdapter extends BaseAdapter {
                 intent.putExtra("empId", employee.getId());
                 intent.putExtra("empName", employee.getName());
                 intent.putExtra("empEmail", employee.getEmail());
+                intent.putExtra("empPrice", employee.getPrice());
+                intent.putExtra("empQuantity", employee.getQuantity());
                 context.startActivity(intent);
             }
         });

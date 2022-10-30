@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.crudsqlite.MainActivity;
 import com.example.crudsqlite.R;
 import com.example.crudsqlite.dao.EmployeeDao;
-import com.example.crudsqlite.model.Employee;
+import com.example.crudsqlite.model.Product;
 
 public class AddEmployeeActivity extends AppCompatActivity {
     private Integer empId;
@@ -31,12 +31,18 @@ public class AddEmployeeActivity extends AppCompatActivity {
             empId = data.getInt("empId");
             String empName = data.getString("empName");
             String empEmail = data.getString("empEmail");
+            String empPrice = data.getString("empPrice");
+            String empQuantity = data.getString("empQuantity");
 
             TextView nameView = findViewById(R.id.name_inp);
             TextView emailView = findViewById(R.id.email_inp);
+            TextView priceView = findViewById(R.id.price_inp);
+            TextView quantityView = findViewById(R.id.quantity_inp);
 
             nameView.setText(empName);
             emailView.setText(empEmail);
+            priceView.setText(empPrice);
+            quantityView.setText(empQuantity);
         }
 
     }
@@ -47,7 +53,12 @@ public class AddEmployeeActivity extends AppCompatActivity {
         String name = nameTxt.getText().toString();
         String email = emailTxt.getText().toString();
 
-        Employee employee = new Employee(name, email);
+        EditText priceTxt = findViewById(R.id.price_inp);
+        EditText quantityTxt = findViewById(R.id.quantity_inp);
+        String price = priceTxt.getText().toString();
+        String quantity = quantityTxt.getText().toString();
+
+        Product employee = new Product(name, email, price, quantity);
         employee.setId(empId);
         boolean result = empId == null ? EmployeeDao.addEmployee(employee) : EmployeeDao.updateEmployee(employee);
 

@@ -15,7 +15,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:text="Employee CRUD"
+        android:text="Student CRUD"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Employee"
+                    android:text="Add Student"
                     android:textSize="24dp"
                     android:textStyle="bold"/>
 
@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="List Employee"
+                    android:text="List Student"
                     android:textSize="24dp"
                     android:textStyle="bold"/>
 
