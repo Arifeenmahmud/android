@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ACB6EA"
     tools:context=".ui.employee.ListEmployeeActivity">
 
     <TextView
@@ -11,20 +12,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Student List"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:padding="16dp"
-        />
+        android:text="Trainee List"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:onClick="goToHome"
+        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@+id/emp_list_header"
-        android:layout_marginLeft="30dp"/>
-
+        android:onClick="goToHome"
+        android:text="Home" />
 
 
     <LinearLayout
